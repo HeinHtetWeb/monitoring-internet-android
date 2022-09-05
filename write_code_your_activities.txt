@@ -1,0 +1,22 @@
+public class MainActivity extends AppCompatActivity{
+    //Declare your java here
+    NetworkChangeListener listener = new NetworkChangeListener();
+    @Override
+protected void onCreate(Bundle savedInstanceState) {
+   super.onCreate(savedInstanceState);
+   setContentView(R.layout.activity_main);
+    }
+    @Override
+protected void onStart() {
+   IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+   registerReceiver(listener,intentFilter);
+   super.onStart();
+}
+
+@Override
+protected void onStop() {
+   unregisterReceiver(listener);
+   super.onStop();
+}
+}
+
